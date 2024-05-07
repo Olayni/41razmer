@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Kidrasov_TradeModelContainer" CdmEntityContainer="Kidrasov_TradeEntities">
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="Kidrasov_TradeModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="OrderDeliveryDate" ColumnName="OrderDeliveryDate" />
+          <ScalarProperty Name="OrderPickupPoint" ColumnName="OrderPickupPoint" />
+          <ScalarProperty Name="OrderClient" ColumnName="OrderClient" />
+          <ScalarProperty Name="OrderReceiveCode" ColumnName="OrderReceiveCode" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderProduct">
+      <EntityTypeMapping TypeName="Kidrasov_TradeModel.OrderProduct">
+        <MappingFragment StoreEntitySet="OrderProduct">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PickupPoint">
+      <EntityTypeMapping TypeName="Kidrasov_TradeModel.PickupPoint">
+        <MappingFragment StoreEntitySet="PickupPoint">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PostIndex" ColumnName="PostIndex" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="Kidrasov_TradeModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductEdIzm" ColumnName="ProductEdIzm" />
+          <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
+          <ScalarProperty Name="ProductDiscountMax" ColumnName="ProductDiscountMax" />
+          <ScalarProperty Name="ProductManufacturer" ColumnName="ProductManufacturer" />
+          <ScalarProperty Name="ProductImporter" ColumnName="ProductImporter" />
+          <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
+          <ScalarProperty Name="ProductDiscountAmount" ColumnName="ProductDiscountAmount" />
+          <ScalarProperty Name="ProductQuantityInStock" ColumnName="ProductQuantityInStock" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="Kidrasov_TradeModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="Kidrasov_TradeModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPatronymic" ColumnName="UserPatronymic" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

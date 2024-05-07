@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Kidrasov_TradeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderDate" Type="date" />
+    <Property Name="OrderDeliveryDate" Type="date" Nullable="false" />
+    <Property Name="OrderPickupPoint" Type="int" Nullable="false" />
+    <Property Name="OrderClient" Type="nvarchar(max)" />
+    <Property Name="OrderReceiveCode" Type="nchar" MaxLength="10" />
+    <Property Name="OrderStatus" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderProduct">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="ProductArticleNumber" />
+    </Key>
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Amount" Type="int" />
+  </EntityType>
+  <EntityType Name="PickupPoint">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostIndex" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="Street" Type="nvarchar(max)" />
+    <Property Name="HomeNumber" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductArticleNumber" />
+    </Key>
+    <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductEdIzm" Type="nvarchar(max)" />
+    <Property Name="ProductCost" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="ProductDiscountMax" Type="tinyint" />
+    <Property Name="ProductManufacturer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductImporter" Type="nvarchar(max)" />
+    <Property Name="ProductCategory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductDiscountAmount" Type="tinyint" />
+    <Property Name="ProductQuantityInStock" Type="int" Nullable="false" />
+    <Property Name="ProductDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductImage" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserSurname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserPatronymic" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserLogin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserRole" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__OrderProd__Order__2E1BDC42">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__UserRole__30F848ED">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_PickupPoint">
+    <End Role="PickupPoint" Type="Self.PickupPoint" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PickupPoint">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="OrderPickupPoint" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductArticleNumber" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="ProductArticleNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Kidrasov_TradeModelContainer">
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PickupPoint" EntityType="Self.PickupPoint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__OrderProd__Order__2E1BDC42" Association="Self.FK__OrderProd__Order__2E1BDC42">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__UserRole__30F848ED" Association="Self.FK__User__UserRole__30F848ED">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_PickupPoint" Association="Self.FK_Order_PickupPoint">
+      <End Role="PickupPoint" EntitySet="PickupPoint" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
